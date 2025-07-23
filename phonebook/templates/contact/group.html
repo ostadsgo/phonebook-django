@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">ردیف</th>
+        {% for header in table_header %}
+        <th scope="col">{{ header }} </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ contact.company_name }}</td>
+        <td>{{ contact.interal_phone }}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"
+                                                                                                defer></script>
+    <title>دفترچه تلفن سازمانی</title>
+  </head>
+
+  <body>
+
+    <section class="d-flex pt-5 gap-5">
+      <nav>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link" href="{% url 'home' %}">دفتر تلفن</a>
+          <a class="nav-link" href="{% url 'group' %}">دفتر تلفن گروه باختر</a>
+          <a class="nav-link" href="#">تلفن گویا و فکس</a>
+        </div>
+      </nav>
+      <section class="content">
+
+        {% comment %} search  {% endcomment %}
+        <form>
+            <input name="q" id="search_id">
+            <input type="submit" value="جستجو">
+        </form>
+        {% comment %} pagination size {% endcomment %}
+        <form>
+            <select name="page_size" id="page_size_id">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+            <input type="submit" value="تعداد کانتک">
+        </form>
+        {% block content %}{% endblock content %}
+
+        {% comment %} paination {% endcomment %}
+        <div class="pg">
+            <span>
+            {% if contacts.has_previous %}
+                <a href="?page={{ contacts.previous_page_number }}&page_size={{ page_size }}">قبلی</a>
+            {% endif %}
+
+            <span>{{ contacts.number }} / {{ contacts.paginator.num_pages }}</span>
+
+            {% if contacts.has_next %}
+                <a href="?page={{ contacts.next_page_number }}&page_size={{ page_size }}">بعدی</a>
+            {% endif %}
+            <span>
+        </div>
+
+
+      </section>
+    </section>
+  </body>
+
+</html>
